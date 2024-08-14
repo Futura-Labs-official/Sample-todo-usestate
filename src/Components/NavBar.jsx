@@ -1,12 +1,11 @@
-import "./NavBar.css"
 
 const NavBar = () => {
     return (
-        <div className="nav-container">
-            <div style={{marginLeft: "10px"}}>
+        <div className="fixed text-white px-6 items-center top-0 w-screen h-16 bg-[#232323] flex justify-between">
+            <div >
                 HEADER OF THE PAGE
             </div>
-            <div style={{marginRight: "10px"}}>
+            <div >
                 ICONS 
             </div>
         </div>

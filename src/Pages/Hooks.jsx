@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as createUniqueId } from "uuid"
+import ListItem from './ListItem';
+import PopUp from '../Components/PopUp';
+import { useTodo } from '../Hooks/Hooks';
 
 // Tailwindcss
 
+// context api
+
 const Hooks = () => {
 
-    const [todoList, setTodoList] = useState([])
+    const {todoList, setTodoList, isOpenWithData} = useTodo()
     const [todo, setTodo] = useState("")
     
     const handleAddTodo = () => {
@@ -36,6 +41,9 @@ const Hooks = () => {
 
     return (
         <div className="flex w-screen justify-center mt-10 px-3 md:px-10">
+            {
+                isOpenWithData && <PopUp />
+            }
             <div className='w-full'>
                 <div className='flex justify-center'>
                     <div className='flex w-full md:w-[500px] flex-col'>
@@ -52,14 +60,9 @@ const Hooks = () => {
                 <div className='flex flex-row justify-center gap-3 mt-4 flex-wrap'>
                     {
                         todoList.map((element) => {
+                            //props [property]
                             return (
-                                <div key={element.id} className='p-3 bg-gray-700 text-white'>
-                                    <p>{element.task}</p>
-                                    <p className='text-[12px] mt-3'>{element.createdAt}</p>
-                                    <div className='w-full'>
-                                        <button onClick={() => handleRemove(element.id)} className='w-full bg-red-500 text-white mt-3 p-1'><i className='fa fa-trash cursor-pointer'/> Remove</button>
-                                    </div>
-                                </div>
+                                <ListItem element={element} handleRemove={handleRemove} />
                             )
                         })
                     }

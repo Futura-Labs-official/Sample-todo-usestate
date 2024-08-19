@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import Loading from './Loading';
+import { api } from '../axios';
 
 const Products = () => {
 
@@ -12,7 +12,7 @@ const Products = () => {
     const getProductList = async () => {
         const limit = 10
         const skip = ( currentPage - 1 ) * 10
-        const response = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
+        const response = await api.get(`/products?limit=${limit}&skip=${skip}`)
         setProducts(response.data.products) 
         if (totalPage == 0) {
             setTotalPage(Math.ceil(response.data.total / limit))

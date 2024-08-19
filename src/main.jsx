@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom/client'
 import App from "./App"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
+import { CartProvider } from './Provider/CartProvider';
+import { TodoProvider } from './Provider/TodoProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    // <React.StrictMode>
-        <App />
-    // </React.StrictMode>,
+    <CartProvider>
+        <TodoProvider>
+            <App />
+        </TodoProvider>
+    </CartProvider>
 )
